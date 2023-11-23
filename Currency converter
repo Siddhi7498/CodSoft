@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+    // Predefined currency rates (hypothetical values for demonstration)
+    private static final double USD_TO_EUR = 0.85;
+    private static final double USD_TO_GBP = 0.73;
+    private static final double USD_TO_JPY = 110.21;
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Available currencies: EUR, GBP, JPY");
+        System.out.print("Enter base currency (USD): ");
+        String baseCurrency = "USD"; // Assuming the base currency is USD
+        String targetCurrency;
+        do {
+            System.out.print("Enter target currency: ");
+            targetCurrency = scanner.next().toUpperCase();
+        } while (!(targetCurrency.equals("EUR") || targetCurrency.equals("GBP") || targetCurrency.equals("JPY")));
+
+        double exchangeRate;
+        if (targetCurrency.equals("EUR")) {
+            exchangeRate = USD_TO_EUR;
+        } else if (targetCurrency.equals("GBP")) {
+            exchangeRate = USD_TO_GBP;
+        } else {
+            exchangeRate = USD_TO_JPY;
+        }
+
+        System.out.print("Enter the amount in USD to convert: ");
+        double amountUSD = scanner.nextDouble();
+
+        // Currency Conversion
+        double convertedAmount = amountUSD * exchangeRate;
+
+        // Display Result
+        System.out.printf("Converted amount: %.2f %s\n", convertedAmount, targetCurrency);
+
+        scanner.close();
+    }
+}
